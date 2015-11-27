@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Trumbowyg by Alex-D</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="ui/trumbowyg.css">
+    </head>
+    <body>
+        <div id="main" role="main">
+            <header>
+                <h1>Default usage of Trumbowyg</h1>
+
+                <p>
+                    No plugin, no options. Just naked Trumbowyg.
+                </p>
+            </header>
+
+            <textarea id="editor"> </textarea>
+
+            <h2>The code</h2>
+            <code><pre>
+$('#editor').trumbowyg();
+            </pre></code>
+        </div>
+        <script src="jquery-1.11.3.min.js"></script>
+        <script src="trumbowyg.js"></script>
+        <script>
+            /** Default editor configuration **/
+            $('#editor').trumbowyg();
+        </script>
+    </body>
+</html>
