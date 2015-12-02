@@ -521,6 +521,6 @@ $config['proxy_ips'] = '';
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['themes'] = 'default';
-$config['home_dir'] = '/var/www/html/trippacker';
+$config['home_dir'] = 'D:/xampp/htdocs/trippacker';
 $config['asset_url'] = 'http://localhost/trippacker/assets/themes/';
 $config['wp_home_url'] = 'http://localhost/trippacker';

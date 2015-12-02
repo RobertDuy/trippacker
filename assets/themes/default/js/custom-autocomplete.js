@@ -4,6 +4,7 @@
         return this.each(function() {
             this.timer = null;
             this.items = new Array();
+            this.htmlTemplate = '';
 
             $.extend(this, option);
 
@@ -75,37 +76,10 @@
                 html = '';
 
                 if (json.length) {
-                    for (i = 0; i < json.length; i++) {
-                        this.items[json[i]['value']] = json[i];
-                    }
-
-                    for (i = 0; i < json.length; i++) {
-                        if (!json[i]['category']) {
-                            html += '<li data-value="' + json[i]['value'] + '"><a href="#">' + json[i]['label'] + '</a></li>';
-                        }
-                    }
-
-                    // Get all the ones with a categories
-                    var category = new Array();
-
-                    for (i = 0; i < json.length; i++) {
-                        if (json[i]['category']) {
-                            if (!category[json[i]['category']]) {
-                                category[json[i]['category']] = new Array();
-                                category[json[i]['category']]['name'] = json[i]['category'];
-                                category[json[i]['category']]['item'] = new Array();
-                            }
-
-                            category[json[i]['category']]['item'].push(json[i]);
-                        }
-                    }
-
-                    for (i in category) {
-                        html += '<li class="dropdown-header">' + category[i]['name'] + '</li>';
-
-                        for (j = 0; j < category[i]['item'].length; j++) {
-                            html += '<li data-value="' + category[i]['item'][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[i]['item'][j]['label'] + '</a></li>';
-                        }
+                    if(this.htmlTemplate.length > 0){
+                        html = this.constructByTemplate(json);
+                    }else{
+                        html = this.defaultConstructHtml(json);
                     }
                 }
 
@@ -116,6 +90,56 @@
                 }
 
                 $(this).siblings('ul.dropdown-menu').html(html);
+            }
+
+            this.constructByTemplate = function(json){
+                var html = ''; var i = 0;
+                if(this.htmlTemplate.length > 0){
+                    for(i = 0; i < json.length; i++){
+                        var replaceHtml = this.htmlTemplate.replace("{{icon}}", json[i]['location_icon']);
+                        replaceHtml = replaceHtml.replace("{{name}}", json[i]['location_name']);
+                        html += replaceHtml;
+                    }
+                }
+                return html;
+            }
+
+            this.defaultConstructHtml = function(json){
+                // Default of auto-complete
+                var html = ''; var i = 0;
+                for (i = 0; i < json.length; i++) {
+                    this.items[json[i]['value']] = json[i];
+                }
+
+                for (i = 0; i < json.length; i++) {
+                    if (!json[i]['category']) {
+                        html += '<li data-value="' + json[i]['value'] + '"><a href="#">' + json[i]['label'] + '</a></li>';
+                    }
+                }
+
+                // Get all the ones with a categories
+                var category = new Array();
+
+                for (i = 0; i < json.length; i++) {
+                    if (json[i]['category']) {
+                        if (!category[json[i]['category']]) {
+                            category[json[i]['category']] = new Array();
+                            category[json[i]['category']]['name'] = json[i]['category'];
+                            category[json[i]['category']]['item'] = new Array();
+                        }
+
+                        category[json[i]['category']]['item'].push(json[i]);
+                    }
+                }
+
+                for (i in category) {
+                    html += '<li class="dropdown-header">' + category[i]['name'] + '</li>';
+
+                    for (j = 0; j < category[i]['item'].length; j++) {
+                        html += '<li data-value="' + category[i]['item'][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[i]['item'][j]['label'] + '</a></li>';
+                    }
+                }
+                return html;
             }
 
             $(this).after('<ul class="dropdown-menu"></ul>');

@@ -56,14 +56,13 @@
     <script src="<?php echo config_item('asset_url'); ?>default/js/jquery.validate.min.js"></script>
 
     <link rel="stylesheet" href="<?php echo config_item('asset_url'); ?>default/css/cropper.min.css"/>
+    <link rel="stylesheet" href="<?php echo config_item('asset_url'); ?>default/css/custom.css"/>
+
     <script src="<?php echo config_item('asset_url'); ?>default/js/custom-autocomplete.js"></script>
     <script src="<?php echo config_item('asset_url'); ?>default/js/cropper/cropper.min.js"></script>
     <script src="<?php echo config_item('asset_url'); ?>default/js/main.js"></script>
 </head>
 <body>
-    <header style="padding-top: 20px;">
-
-    </header>
     <div id="floating-panel">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -74,7 +73,7 @@
             <a data-value="0" tabindex="-1" style="overflow:hidden; text-decoration: none">
                 <i class="fa fa-map-marker fa-2x" style="float: left; padding-left: 26px"></i>
                 <span style="display:block; width:305px;">
-                    <strong>Đà Nẵng, Việt Nam</strong><br>
+                    <strong>?� N?ng, Vi?t Nam</strong><br>
                     <span class="lists-items-address" style="font-size: 9px">07 Quang Trung, Hai Chau, Da Nang</span>
                 </span>
             </a>
@@ -83,7 +82,7 @@
             <a data-value="0" tabindex="-1" style="overflow:hidden; text-decoration: none">
                 <i class="fa fa-map-marker fa-2x" style="float: left; padding-left: 26px"></i>
                 <span style="display:block; width:305px;">
-                    <strong>Đà Nẵng, Việt Nam</strong><br>
+                    <strong>?� N?ng, Vi?t Nam</strong><br>
                     <span class="lists-items-address" style="font-size: 9px">07 Quang Trung, Hai Chau, Da Nang</span>
                 </span>
             </a>
@@ -94,6 +93,8 @@
         </div>
     </div>
     <div id="map"></div>
+
+    <!-- Boopstrap dialog -->
     <div id="collectionDialogModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,7 +112,7 @@
                                     <label>Tên bộ sưu tập*</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input id="titleCollection" type="text" name="post_data[title]" class="form-control" value="" placeholder="Ex: Đầu tư nhà đất"/>
+                                    <input id="titleCollection" type="text" name="post_data[title]" class="form-control" value="" placeholder="Ex: �?ầu tư nhà đất"/>
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 10px">
@@ -119,7 +120,7 @@
                                     <label>Mô tả bộ sưu tập</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="descriptionCollection" name="post_data[description]" placeholder="Mô tả ngắn về bộ sưu tập của bạn"></textarea>
+                                    <textarea class="form-control" id="descriptionCollection" name="post_data[description]" placeholder="Mô tả ngắn v�? bộ sưu tập của bạn"></textarea>
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 10px">
@@ -128,7 +129,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <div style="float: left">
-                                        <lable><input id="chkPublic" onclick="selectBM($(this), $('#chkPrivate'));" checked="checked" type="radio"/>Hiển thị với mọi người (public)</lable>
+                                        <lable><input id="chkPublic" onclick="selectBM($(this), $('#chkPrivate'));" checked="checked" type="radio"/>Hiển thị với m�?i ngư�?i (public)</lable>
                                     </div>
                                     <div style="float: left; padding-left: 10px;">
                                         <lable><input id="chkPrivate" onclick="selectBM($(this), $('#chkPublic'));" type="radio"/>Chỉ với tôi (private)</lable>
@@ -142,6 +143,39 @@
                     <input id="collectionSubmitBtn" onclick="$('#collection-form').submit();" type="submit" class="btn btn-primary" style="float: right" value="Tạo bộ sưu tập" />
                 </div>
                 <input type="hidden" id="editCollectionId" value="" />
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Search popup -->
+    <div id="SearchModal" class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <form id="search-form" method="post" action="planyourtrip">
+                        <div class="row" align="center">
+                            <h3>Plan your trip</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon black_marker"></span>
+                                    <input id="startLocation" type="text" class="form-control no-border-left" placeholder="Start" aria-describedby="basic-addon1">
+                                    <span class="input-group-addon black_marker"></span>
+                                    <input id="destLocation" type="text" class="form-control no-border-left" placeholder="Destination" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-warning">GO!</button>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 10px 15px;">
+                            <span>Show me</span>
+                            <input type="checkbox" style="margin: 10px 0 10px 10px;"/><span>Hotel</span><span class="icon-hotel" style="padding-left: 19px;"></span>
+                            <input type="checkbox" style="margin: 10px 0 10px 10px;"/><span>Attraction</span><span class="icon-camera" style="padding-left: 19px;"></span>
+                        </div>
+                    </form>
+                </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -171,6 +205,10 @@
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
+
+        google.maps.event.addListenerOnce(map, 'idle', function(){
+            $('#SearchModal').modal('show');
+        });
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -181,7 +219,7 @@
     }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAzV6NPRGyNVB0y6FufjTEnHIeXayxs2k&signed_in=true&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAzV6NPRGyNVB0y6FufjTEnHIeXayxs2k&callback=initMap"></script>
 <script type="text/javascript">
     $('#filterLocationInput').autocomplete({
         'source': function(request, response) {
@@ -204,7 +242,66 @@
             html += '<a data-value="0" tabindex="-1" style="overflow:hidden; text-decoration: none">';
             html += '<i class="fa fa-map-marker fa-2x" style="float: left; padding-left: 26px"></i>';
             html += '<span style="display:block; width:305px;">';
-            html += '<strong>Đà Nẵng, Việt Nam</strong><br>';
+            html += '<strong>�?à Nẵng, Việt Nam</strong><br>';
+            html += '<span class="lists-items-address" style="font-size: 9px">07 Quang Trung, Hai Chau, Da Nang</span>';
+            html += '</span></a></div>';
+            html += '<div id="locationAppendDiv"></div>';
+            $('#locationAppendDiv').replaceWith(html);
+        }
+    });
+
+    $('#SearchModal #startLocation').autocomplete({
+        htmlTemplate : '<li style="width: 100%;"><i class="{{icon}}"><span>{{name}}</span></li>',
+        'source': function(request, response) {
+            $.ajax({
+                url: '<?php echo config_item('base_url'); ?>ajax/get_complete_filter?filter_model=' +  encodeURIComponent(request),
+                dataType: 'json',
+                success: function(json) {
+                    response($.map(json, function(item) {
+                        return {
+                            location_name : item['location_name'],
+                            location_address: item['location_address'],
+                            location_icon : item['location_icon']
+                        }
+                    }));
+                }
+            });
+        },
+        'select': function(item) {
+            var html = '<div class="row hover-highlight">';
+            html += '<a data-value="0" tabindex="-1" style="overflow:hidden; text-decoration: none">';
+            html += '<i class="fa fa-map-marker fa-2x" style="float: left; padding-left: 26px"></i>';
+            html += '<span style="display:block; width:305px;">';
+            html += '<strong>�?à Nẵng, Việt Nam</strong><br>';
+            html += '<span class="lists-items-address" style="font-size: 9px">07 Quang Trung, Hai Chau, Da Nang</span>';
+            html += '</span></a></div>';
+            html += '<div id="locationAppendDiv"></div>';
+            $('#locationAppendDiv').replaceWith(html);
+        }
+    });
+
+    $('#SearchModal #destLocation').autocomplete({
+        'source': function(request, response) {
+            $.ajax({
+                url: '<?php echo config_item('base_url'); ?>ajax/get_complete_filter?filter_model=' +  encodeURIComponent(request),
+                dataType: 'json',
+                success: function(json) {
+                    response($.map(json, function(item) {
+                        return {
+                            location_name : item['location_name'],
+                            location_address: item['location_address'],
+                            location_icon : item['location_icon']
+                        }
+                    }));
+                }
+            });
+        },
+        'select': function(item) {
+            var html = '<div class="row hover-highlight">';
+            html += '<a data-value="0" tabindex="-1" style="overflow:hidden; text-decoration: none">';
+            html += '<i class="fa fa-map-marker fa-2x" style="float: left; padding-left: 26px"></i>';
+            html += '<span style="display:block; width:305px;">';
+            html += '<strong>�?à Nẵng, Việt Nam</strong><br>';
             html += '<span class="lists-items-address" style="font-size: 9px">07 Quang Trung, Hai Chau, Da Nang</span>';
             html += '</span></a></div>';
             html += '<div id="locationAppendDiv"></div>';
