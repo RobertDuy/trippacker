@@ -20,8 +20,9 @@ class Ajax extends CI_Controller {
         if(isset($_GET['filter_model'])){
             // this is example data
             // $filter_model = $_GET['filter_model'];
+            $maxResult = $_GET['maxResult'];
             $result = array();
-            for($index = 0; $index < 10; $index++){
+            for($index = 0; $index < $maxResult; $index++){
                 $result[] = array(
                     'location_name' => 'Example Name' . $index,
                     'location_address' => 'Example Address' . $index,
