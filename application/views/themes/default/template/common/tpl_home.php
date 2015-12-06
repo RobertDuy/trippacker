@@ -143,41 +143,49 @@
                 <div class="modal-body">
                     <div class="container-fluid" id="collectionDialogModalBody">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2" style="padding: 0">
                                 <a href="javascript:void(0)" style="text-decoration: none" class="trip-image-holder">
-                                    <img src="<?php echo config_item('asset_url');?>default/images/phatquang.jpg" style="width: 100px"/>
-                                    <img src="<?php echo config_item('asset_url');?>default/images/pencil-01-32.png" style="position: absolute; top: 30px; left: 70px;"/>
+                                    <img title="Cancel" src="<?php echo config_item('asset_url');?>default/images/phatquang.jpg" style="width: 110px; height: 85px; cursor: pointer"/>
+                                    <img title="Okie" src="<?php echo config_item('asset_url');?>default/images/pencil-01-32.png" style="position: absolute; top: 30px; left: 70px; cursor: pointer"/>
                                 </a>
                             </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-3"><label>Name:</label></div>
-                                    <div class="col-md-9"><input class="form-control"/></div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <span for="text" style="float: left; margin-top: 6px; margin-right: 25px;">Name:</span>
+                                    <div style="width: 81%;" class="input-group">
+                                        <input type="text" class="text-input form-control" style="border-right: medium none;border-left: medium none;">
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3"><label>Address:</label></div>
-                                    <div class="col-md-9"><input class="form-control"/></div>
+                                <div class="form-group">
+                                    <span for="text" style="float: left; margin-top: 6px; margin-right: 11px;">Address:</span>
+                                    <div style="width: 81%;" class="input-group">
+                                        <input type="text" class="text-input form-control" style="border-right: medium none;border-left: medium none;">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <img src="<?php echo config_item('asset_url');?>default/images/free-09-64.png" />
-                                <img src="<?php echo config_item('asset_url');?>default/images/ok-64.png" />
+                                <img src="<?php echo config_item('asset_url');?>default/images/free-09-64.png" style="cursor: pointer"/>
+                                <img src="<?php echo config_item('asset_url');?>default/images/ok-64.png" style="cursor: pointer"/>
+                            </div>
+                        </div>
+                        <div style="padding-top: 3px;" class="row">
+                            <div class="form-group">
+                                <span for="text" style="float: left; margin-top: 6px; margin-right: 30px;">Type of location:</span>
+                                <div style="width: 53%;" class="input-group">
+                                    <select class="form-control" style="border-left: none; border-right: none; border-top: none;">
+                                        <option value="one">Attraction</option>
+                                        <option value="two">Accommodation</option>
+                                        <option value="three">Entertainment</option>
+                                        <option value="four">Food & Drink</option>
+                                        <option value="five">Night light</option>
+                                        <option value="five">Sport</option>
+                                        <option value="five">Shopping</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3"><span>Type of location</span></div>
-                            <div class="col-md-4">
-                                <select class="form-control">
-                                    <option value="one">One</option>
-                                    <option value="two">Two</option>
-                                    <option value="three">Three</option>
-                                    <option value="four">Four</option>
-                                    <option value="five">Five</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <h4>Introduce about this place</h4>
+                            <strong>Introduce about this place</strong>
                             <textarea id="editor" class="form-control autoresized-textarea clear" rows="7">
                             </textarea>
                         </div>
@@ -186,14 +194,19 @@
                             <span>Da Nang</span>
                         </div>
                         <div class="row" style="padding-top: 15px">
-                            <strong>Add Tag</strong>
-                            <input type="text" />
+                            <div class="form-group">
+                                <label style="float: left; margin-top: 6px; margin-right: 20px;" for="text">Add Tag</label>
+                                <div class="input-group" style="width: 89%;">
+                                    <input type="text" class="text-input form-control" style=" border-left: medium none; border-right: medium none; border-top: medium none;">
+                                </div>
+                            </div>
                         </div>
                         <div class="row" style="min-height: 300px">
-                            <div class="col-md-6" style="height: 290px;">
-                                <strong>Drap map to set location</strong>
+                            <div class="col-md-6" style="height: 290px; padding: 0">
+                                <strong>Add picture</strong>
+                                <hr style="margin-top:5px" />
                                 <div>
-                                    <img src="<?php echo config_item('asset_url');?>default/images/phatquang.jpg" style="width: 100px"/>
+                                    <img src="<?php echo config_item('asset_url');?>default/images/phatquang.jpg" style="width: 110px"/>
                                     <img src="<?php echo config_item('asset_url');?>default/images/free-09-64.png" style="position: absolute; top: 30px; width: 28px; left: 98px;"/>
                                 </div>
                                 <div style="float: right; position: absolute; bottom: 0; right: 0;">
@@ -202,7 +215,7 @@
                             </div>
                             <div class="col-md-6">
                                 <strong>Drap map to set location</strong>
-                                <div id="smallerMap">
+                                <div id="smallerMap" style="margin-top: 5px">
                                 </div>
                             </div>
                         </div>
